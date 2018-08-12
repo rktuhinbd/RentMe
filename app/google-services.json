@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "830701291942",
+    "firebase_url": "https://rentme-493cb.firebaseio.com",
+    "project_id": "rentme-493cb",
+    "storage_bucket": "rentme-493cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830701291942:android:4b984e1293247a3e",
+        "android_client_info": {
+          "package_name": "rentme.dim.com.rentme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830701291942-hagm0h21p0vtt30obj9lkmbjm1032e82.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rentme.dim.com.rentme",
+            "certificate_hash": "d4779a714cff270abed7e1ee56840b0601ccf09e"
+          }
+        },
+        {
+          "client_id": "830701291942-1ohjbnb9eelbc5spvhvpgtn24bh34qvf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rentme.dim.com.rentme",
+            "certificate_hash": "22f15e173bf6ae160229b1d295b9f71b21b5ec7c"
+          }
+        },
+        {
+          "client_id": "830701291942-r6i01f0k3s7eb9lgl2a6837tltleld32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm8yNlkSBWmcN2EAosWQnuw-N29QzvlAs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830701291942-r6i01f0k3s7eb9lgl2a6837tltleld32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

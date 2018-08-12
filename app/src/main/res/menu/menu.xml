@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/navigation_button_my_trips"
+        android:icon="@drawable/ic_my_trips"
+        android:title="My Trips" />
+
+    <item
+        android:id="@+id/navigation_button_account_settings"
+        android:icon="@drawable/ic_account_settings"
+        android:title="Account Settings" />
+
+    <item
+        android:id="@+id/navigation_button_terms_and_condition"
+        android:icon="@drawable/ic_terms"
+        android:title="Terms and Conditions" />
+
+
+    <item
+        android:id="@+id/navigation_button_about"
+        android:icon="@drawable/ic_about"
+        android:title="About" />
+
+    <item
+        android:id="@+id/navigation_button_log_out"
+        android:icon="@drawable/ic_log_out"
+        android:title="Log out" />
+
+</menu>

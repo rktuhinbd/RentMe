@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout_first"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="8"
+    android:background="#FFFFFF"
+    tools:context=".Activity.Activity.FirstActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"/>
+
+    <!--<ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:src="@drawable/icon" />-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:padding="20dp"
+        android:text="@string/welcome"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:textColor="@android:color/black"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"/>
+
+    <!--<Button
+            android:id="@+id/button_create_account"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_shape_button"
+            android:text="@string/button_create_account"
+            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:elevation="10dp"
+            android:translationZ="5dp"
+            android:textStyle="bold"
+            android:textColorHighlight="@android:color/white"
+            android:textColor="@android:color/white" />-->
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"/>
+
+    <Button
+        android:id="@+id/button_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/rounded_shape_button"
+        android:text="@string/button_sign_in"
+        android:textSize="18sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="0dp"
+        android:textStyle="bold"
+        android:textColorHighlight="@android:color/white"
+        android:textColor="@android:color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="7dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:weightSum="4.5">
+        <TextView
+            android:id="@+id/textView_first_time_registration"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:gravity="right"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="5dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/first_time_registration"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:focusable="true"
+            android:paddingEnd="5dp" />
+
+        <TextView
+            android:id="@+id/textView_register_here"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:clickable="true"
+            android:paddingRight="5dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/register_here"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:focusable="true"
+            android:paddingEnd="5dp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Rent Me</string>
+    <string name="phone">Phone</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="not_registered_yet">Not registered yet?</string>
+    <string name="register_here">Register here</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="button_create_account">Create Account</string>
+    <string name="button_sign_in">Sign In</string>
+    <string name="button_registration">Continue</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="car">Car</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="cancel">Cancel</string>
+    <string name="registered_phone_number">Registered Phone Number</string>
+    <string name="we_just_need_your_registered_phone_number_to_reset_your_password">We just need your registered phone number to reset your password</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="my_trips">My Trips</string>
+    <string name="first_time_registration">Is this your first time?</string>
+    <string name="registration">Sign Up here</string>
+    <string name="welcome">Welcome at \n Rent Me</string>
+    <string name="button_bottom_sheet">Upload</string>
+</resources>
