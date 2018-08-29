@@ -5,8 +5,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#FAFAFA"
     android:weightSum="3"
-    android:background="#09090A"
+
     tools:context=".Activity.Activity.RegistrationActivity">
 
     <LinearLayout
@@ -24,7 +25,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textSize="32sp"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textStyle="bold"/>
     </LinearLayout>
 
@@ -43,8 +44,8 @@
             android:layout_height="0dp"
             android:layout_weight="0.75"
             android:hint="Full Name"
-            android:textColorHint="#D1D1D1"
-            android:textColor="#D1D1D1"
+            android:textColorHint="#000000"
+            android:textColor="#000000"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
             android:gravity="center"
             android:drawableLeft="@drawable/ic_user"
@@ -70,15 +71,15 @@
                 android:foregroundGravity="center"
                 android:gravity="center"
                 app:ccp_textFont="16sp"
-                app:ccp_textColor="#D1D1D1"/>
+                app:ccp_textColor="#000000"/>
             <EditText
                 android:id="@+id/editText_phone"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:hint="Contact Number"
-                android:textColorHint="#D1D1D1"
-                android:textColor="#D1D1D1"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:inputType="phone"
                 android:gravity="center"
                 android:drawableLeft="@drawable/ic_contact"
@@ -95,8 +96,8 @@
             android:layout_weight="0.75"
             android:layout_marginTop="10dp"
             android:hint="Email"
-            android:textColorHint="#D1D1D1"
-            android:textColor="#D1D1D1"
+            android:textColorHint="#000000"
+            android:textColor="#000000"
             android:inputType="textEmailAddress"
             android:gravity="center"
             android:drawableLeft="@drawable/ic_email"
@@ -110,13 +111,42 @@
             android:layout_weight="0.75"
             android:layout_marginTop="10dp"
             android:hint="Password"
-            android:textColorHint="#D1D1D1"
-            android:textColor="#D1D1D1"
+            android:textColorHint="#000000"
+            android:textColor="#000000"
             android:inputType="textPassword"
             android:gravity="center"
             android:drawableLeft="@drawable/ic_lock"
             android:paddingLeft="15dp"
             android:background="@drawable/rounded_shape_input"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.75"
+            android:layout_marginTop="20dp">
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:gravity="center_vertical"
+                android:text="I agree" />
+
+            <TextView
+                android:id="@+id/textView_terms_and_conditions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terms &amp; Condition"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_register"
@@ -125,25 +155,14 @@
             android:layout_weight="0"
             android:layout_marginTop="40dp"
             android:text="@string/button_registration"
-            android:textColor="#ffff"
+            android:textColor="#ffffff"
             android:background="@drawable/rounded_shape_button"/>
 
-        <TextView
-            android:id="@+id/textView_terms_and_conditions"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:layout_marginTop="10dp"
-            android:text="Terms &amp; Condition"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            android:gravity="center_vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="LogOut"
-            />
+        <ProgressBar
+            android:id="@+id/progressBar_Registration"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 

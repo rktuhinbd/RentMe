@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private CountryCodePicker countryCodePicker;
     private String phoneNo;
     private int GALLERY_INTENT = 100;
+    private CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +57,17 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         sharedPreferencesClassObject = new SharedPreferencesClass(RegistrationActivity.this);
-
         countryCodePicker = (CountryCodePicker) findViewById(R.id.country_code_picker);
-
         button_register  = (Button) findViewById(R.id.button_register);
         terms_and_conditions  = (TextView) findViewById(R.id.textView_terms_and_conditions);
-
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 RegisterUser();
             }
         });
+
+        checkBox = (CheckBox)findViewById(R.id.checkBox);
 
         terms_and_conditions.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +106,9 @@ public class RegistrationActivity extends AppCompatActivity {
         }
         else if (!editText_email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
             editText_email.setError("Invalid Email Address");
+        }
+        else if(checkBox.isChecked() == false){
+            Toast.makeText(getApplicationContext(), "You need to accept the Terms and Conditions", Toast.LENGTH_LONG).show();
         }
         else {
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
