@@ -6,11 +6,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,7 @@ public class AccountSettings extends AppCompatActivity {
     private Button buttonBack, buttonEditInfo,dialogButtonUpload,dialogButtonCancel;
     private ImageView imageView_user_profile;
     private TextView textViewFullName, textViewEmail, textViewPassword, textViewPhone;
+    private LinearLayout linearLayout_activity_account_settings;
     private SharedPreferencesClass sharedPreferencesClassObject;
     private String userName, userEmail, userPhone;
     private DatabaseReference databaseReferenceRequests, databaseReferenceSignInInfo;
@@ -50,6 +53,7 @@ public class AccountSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_settings);
 
+        linearLayout_activity_account_settings = (LinearLayout) findViewById(R.id.linearLayout_activity_account_settings);
         imageView_user_profile = (ImageView) findViewById(R.id.imageView_user_profile_photo);
         textViewFullName = (TextView)findViewById(R.id.textView_full_name);
         textViewPhone = (TextView)findViewById(R.id.textView_phone);
@@ -110,7 +114,6 @@ public class AccountSettings extends AppCompatActivity {
                 dialogButtonUpload.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(AccountSettings.this, "Upload called", Toast.LENGTH_SHORT).show();
                         bottomSheetDialog.dismiss();
                         Upload();
                     }
@@ -118,7 +121,6 @@ public class AccountSettings extends AppCompatActivity {
                 dialogButtonCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(AccountSettings.this, "cancel", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -143,13 +145,13 @@ public class AccountSettings extends AppCompatActivity {
                 orientation = cur.getInt(cur.getColumnIndex(orientationColumn[0]));
                 UpdateImageAngle();
                 sharedPreferencesClassObject.setSharedPreferences("UserData", "UserImageAngle", ""+orientation);
-                Log.e("Orientation", orientation+"");
+                //Log.e("Orientation", orientation+"");
             }
             filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                    Toast.makeText(AccountSettings.this, "Image Uploaded", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(AccountSettings.this, "Image Uploaded", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -158,29 +160,33 @@ public class AccountSettings extends AppCompatActivity {
     private void UpdateImageAngle() {
         if(orientation != -1){
             final Query data = databaseReferenceSignInInfo.child(userPhone);
-            Log.e("query result", data.toString());
+            //Log.e("query result", data.toString());
             data.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if(dataSnapshot.hasChildren()){
+                        //SignInInfo signInInfo = dataSnapshot.getValue(SignInInfo.class);
+                        //String name = signInInfo.getUserName();
                         HashMap<String, Object> result = new HashMap<>();
                         result.put("userImageAngle", ""+orientation);
                         databaseReferenceSignInInfo.child(userPhone).updateChildren(result);
                         sharedPreferencesClassObject.setSharedPreferences("UserData", "UserImageAngle", ""+orientation);
                     }
                     else{
-                        Toast.makeText(AccountSettings.this, "Phone number is not registered", Toast.LENGTH_SHORT).show();
+                        ShowSnackbar("Phone number is not registered");
+                        //Toast.makeText(AccountSettings.this, "Phone number is not registered", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.e("onCancelled", "onCancelled", databaseError.toException());
+                    //Log.e("onCancelled", "onCancelled", databaseError.toException());
                 }
             });
         }
         else{
-            Toast.makeText(AccountSettings.this, "Password Did Not Match", Toast.LENGTH_SHORT).show();
+            ShowSnackbar("Password Does Not Match");
+            //Toast.makeText(AccountSettings.this, "Password Does Not Match", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -192,12 +198,12 @@ public class AccountSettings extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         String angle = sharedPreferencesClassObject.getSharedPreferences("UserData", "UserImageAngle", "");
                         int ang = Integer.valueOf(angle);
-
+                        //Toast.makeText(HomeActivity.this, ""+ang, Toast.LENGTH_SHORT).show();
                         if(ang == 270){
                             Picasso.get()
                                     .load(uri)
                                     .rotate(270)
-                                    .resize(100, 120)
+                                    .resize(150, 150)
                                     .transform(new CircleImageTransformation())
                                     .centerCrop()
                                     .into(imageView_user_profile);
@@ -206,7 +212,7 @@ public class AccountSettings extends AppCompatActivity {
                             Picasso.get()
                                     .load(uri)
                                     .rotate(180)
-                                    .resize(100, 120)
+                                    .resize(150, 150)
                                     .transform(new CircleImageTransformation())
                                     .centerCrop()
                                     .into(imageView_user_profile);
@@ -215,7 +221,7 @@ public class AccountSettings extends AppCompatActivity {
                             Picasso.get()
                                     .load(uri)
                                     .rotate(0)
-                                    .resize(100, 120)
+                                    .resize(150, 150)
                                     .transform(new CircleImageTransformation())
                                     .centerCrop()
                                     .into(imageView_user_profile);
@@ -224,7 +230,7 @@ public class AccountSettings extends AppCompatActivity {
                             Picasso.get()
                                     .load(uri)
                                     .rotate(90)
-                                    .resize(100, 120)
+                                    .resize(150, 150)
                                     .transform(new CircleImageTransformation())
                                     .centerCrop()
                                     .into(imageView_user_profile);
@@ -232,7 +238,7 @@ public class AccountSettings extends AppCompatActivity {
                         else{
                             Picasso.get()
                                     .load(uri)
-                                    .resize(100, 120)
+                                    .resize(150, 150)
                                     .transform(new CircleImageTransformation())
                                     .centerCrop()
                                     .into(imageView_user_profile);
@@ -245,7 +251,8 @@ public class AccountSettings extends AppCompatActivity {
             }
         }
         else{
-            Toast.makeText(this, "Image Not Found", Toast.LENGTH_SHORT).show();
+            ShowSnackbar("Image Not Found");
+            //Toast.makeText(this, "Image Not Found", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -253,6 +260,17 @@ public class AccountSettings extends AppCompatActivity {
         textViewFullName.setText(userName);
         textViewEmail.setText(userEmail);
         textViewPhone.setText(userPhone);
+    }
+
+    private void ShowSnackbar(String message){
+        Snackbar snackbar = Snackbar.make(linearLayout_activity_account_settings, ""+message, Snackbar.LENGTH_LONG)
+                .setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(getIntent());
+                    }
+                });
+        snackbar.show();
     }
 
     @Override

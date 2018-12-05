@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout_activity_registration"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -44,9 +45,9 @@
             android:layout_height="0dp"
             android:layout_weight="0.75"
             android:hint="Full Name"
-            android:textColorHint="#000000"
+            android:textColorHint="#646464"
             android:textColor="#000000"
-            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ .abcdefghijklmnopqrstuvwxyz"
             android:gravity="center"
             android:drawableLeft="@drawable/ic_user"
             android:paddingLeft="15dp"
@@ -71,14 +72,14 @@
                 android:foregroundGravity="center"
                 android:gravity="center"
                 app:ccp_textFont="16sp"
-                app:ccp_textColor="#000000"/>
+                app:ccp_textColor="#414141"/>
             <EditText
                 android:id="@+id/editText_phone"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:hint="Contact Number"
-                android:textColorHint="#000000"
+                android:textColorHint="#FF646464"
                 android:textColor="#000000"
                 android:inputType="phone"
                 android:gravity="center"
@@ -96,7 +97,7 @@
             android:layout_weight="0.75"
             android:layout_marginTop="10dp"
             android:hint="Email"
-            android:textColorHint="#000000"
+            android:textColorHint="#FF646464"
             android:textColor="#000000"
             android:inputType="textEmailAddress"
             android:gravity="center"
@@ -111,7 +112,7 @@
             android:layout_weight="0.75"
             android:layout_marginTop="10dp"
             android:hint="Password"
-            android:textColorHint="#000000"
+            android:textColorHint="#FF646464"
             android:textColor="#000000"
             android:inputType="textPassword"
             android:gravity="center"
@@ -131,14 +132,15 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:gravity="center_vertical"
-                android:text="I agree" />
+                android:text="I agree to the "
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/textView_terms_and_conditions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Terms &amp; Condition"
-                android:textColor="#000000"
+                android:text="Terms &amp; Conditions"
+                android:textColor="#1A237E"
                 android:textSize="16sp"
                 android:textAlignment="center"
                 android:gravity="center_vertical"
@@ -157,12 +159,12 @@
             android:text="@string/button_registration"
             android:textColor="#ffffff"
             android:background="@drawable/rounded_shape_button"/>
-
         <ProgressBar
-            android:id="@+id/progressBar_Registration"
+            android:id="@+id/progressbar_registration"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

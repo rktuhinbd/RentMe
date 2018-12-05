@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff9fa"
     tools:context=".Activity.Activity.NavigationDrawerItems.ErrorActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Something Went Wrong..!! \n Please Try Again"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:gravity="center"
-        android:layout_gravity="center" />
+        android:layout_height="match_parent"
+        android:weightSum="8"
+        android:orientation="vertical"
+        android:layout_margin="40dp">
+        <ImageView
+            android:layout_weight="4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/error"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/todo" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/ooopsss"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#292929"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="@string/something_went_wrong_n_please_try_again"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>

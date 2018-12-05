@@ -8,7 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 import rentme.dim.com.rentme.Activity.Data.Requests;
 import rentme.dim.com.rentme.R;
@@ -93,6 +97,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         int Hour = Integer.parseInt(Time[0]);
         String time;
 
+        if(HoursDifference(currentItem) < 0){
+            holder.mDeleteItem.setVisibility(View.GONE);
+        }
+
         if(Hour > 12){
             Hour = Hour - 12;
             time = Hour + ":" + Time[1] + " PM";
@@ -104,13 +112,37 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             time = Hour + ":" + Time[1] + " AM";
         }
 
-        String FinalDateTime = DateTime[0] + "\n" + time ;
+        String FinalDateTime = DateTime[0] + "\n" + time;
 
         holder.hDateTime.setText(FinalDateTime);
         holder.hSource.setText(currentItem.getStartingPoint());
         holder.hDestination.setText(currentItem.getEndingPoint());
         holder.hCarType.setText(currentItem.getCarType());
         holder.hCost.setText(currentItem.getRentCost());
+    }
+
+
+    private long HoursDifference(Requests requestItem){
+        long hoursDiff = 0;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/M/yyyy hh:mm");
+        try{
+            TimeZone timeZone = TimeZone.getTimeZone("GMT+6");
+            Calendar calendar = Calendar.getInstance(timeZone);
+
+            Date currentDate = simpleDateFormat.parse(calendar.get(Calendar.DAY_OF_MONTH)+"/"+(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR)+" "+calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE));
+            Date requestedDate = simpleDateFormat.parse(requestItem.getRequestDate());
+
+            long differenceBetweenDates = requestedDate.getTime() - currentDate.getTime();
+            long secondsInMilli = 1000;
+            long minutesInMilli = secondsInMilli * 60;
+            long hoursInMilli = minutesInMilli * 60;
+            hoursDiff = differenceBetweenDates / hoursInMilli;
+            differenceBetweenDates = differenceBetweenDates % hoursInMilli;
+
+            //Log.e("Hours Differenc",""+hoursDiff+"-----"+differenceBetweenDates);
+        }
+        catch(Exception e){}
+        return hoursDiff;
     }
 
     @Override

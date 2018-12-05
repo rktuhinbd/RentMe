@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout_activity_account_settings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -25,7 +26,6 @@
             android:gravity="center"
             android:textColor="#ffffff"
             android:layout_marginLeft="30dp"/>
-
     </LinearLayout>
 
     <LinearLayout
@@ -43,8 +43,8 @@
 
             <ImageView
                 android:id="@+id/imageView_user_profile_photo"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:background="@drawable/demo_profile_pic" />

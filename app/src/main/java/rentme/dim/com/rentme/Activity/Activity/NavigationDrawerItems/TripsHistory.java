@@ -1,11 +1,16 @@
 package rentme.dim.com.rentme.Activity.Activity.NavigationDrawerItems;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +35,7 @@ import rentme.dim.com.rentme.R;
 
 public class TripsHistory extends AppCompatActivity {
 
+    private LinearLayout linearLayout_activity_recyclerView;
     private RecyclerView tRecyclerView;
     private HistoryAdapter tAdapter;
     private RecyclerView.LayoutManager tLayoutManager;
@@ -41,6 +47,7 @@ public class TripsHistory extends AppCompatActivity {
     private TripHistory trip;
     private Requests request, req;
     private boolean removeItemCalled = false;
+    private AlertDialog.Builder alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,7 @@ public class TripsHistory extends AppCompatActivity {
         setContentView(R.layout.activity_recyclerview);
         req = null;
 
+        linearLayout_activity_recyclerView = (LinearLayout) findViewById(R.id.linearLayout_activity_recyclerView);
         databaseReferenceRequests = FirebaseDatabase.getInstance().getReference("Requests");
         databaseReferenceTrips = FirebaseDatabase.getInstance().getReference("Trips");
         sharedPreferencesClassObject = new SharedPreferencesClass(TripsHistory.this);
@@ -62,7 +70,7 @@ public class TripsHistory extends AppCompatActivity {
 //        tRecyclerView.removeViewAt(position);
 //        tAdapter.notifyItemRemoved(position);
 //        tAdapter.notifyItemRangeChanged(position, historyLists.size());
-        Toast.makeText(this, "Item Deleted", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Item Deleted", Toast.LENGTH_SHORT).show();
     }
 
     private void TripDetails() {
@@ -77,13 +85,13 @@ public class TripsHistory extends AppCompatActivity {
                             if(request.getUserPhone().equals(phoneNo)){
                                 //history data added to arraylist
                                 if(!removeItemCalled){
-                                    Log.e("History List","Inserted");
+                                    //Log.e("History List","Inserted");
                                     historyLists.add(request);
                                 }
                             }
                         }
                     }
-                    Log.e("History List",""+historyLists.size());
+                    //Log.e("History List",""+historyLists.size());
 
                     tRecyclerView = findViewById(R.id.recyclerView);
                     tRecyclerView.setHasFixedSize(true);
@@ -96,31 +104,52 @@ public class TripsHistory extends AppCompatActivity {
                     tAdapter.setOnItemClickListener(new HistoryAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(int position) {
-                            Toast.makeText(TripsHistory.this, ""+ position, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(TripsHistory.this, ""+ position, Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
-                        public void onDeleteClick(int position) {
-
+                        public void onDeleteClick(final int position) {
                             if(HoursDifference(historyLists.get(position)) >=4 ){
-                                Requests requestData = historyLists.get(position);
-                                RemoveItem(position);
-                                removeFromDatabase(requestData, position);
+                                alertDialog = new AlertDialog.Builder(TripsHistory.this);
+                                alertDialog.setTitle("Cancel Trip?");
+                                alertDialog.setMessage("Are you sure?");
+                                //alertDialog.setIcon(R.drawable.exit);
+                                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Requests requestData = historyLists.get(position);
+                                        RemoveItem(position);
+                                        removeFromDatabase(requestData, position);
+                                        finish();
+                                    }
+                                });
+
+                                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(getIntent());
+                                    }
+                                });
+
+                                AlertDialog aalertDialog = alertDialog.show();
+                                aalertDialog.show();
                             }
                             else if(HoursDifference(historyLists.get(position)) <4 && HoursDifference(historyLists.get(position)) >=0){
-                                Toast.makeText(TripsHistory.this, "You Cannot cancel trip request within 4 hours before starting trip", Toast.LENGTH_SHORT).show();
+                                ShowSnackbar("You Cannot cancel trip request within 4 hours before starting trip");
+                                //Toast.makeText(TripsHistory.this, "You Cannot cancel trip request within 4 hours before starting trip", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.e("onCancelled", "onCancelled", databaseError.toException());
+                    //Log.e("onCancelled", "onCancelled", databaseError.toException());
                 }
             });
         }
         catch(Exception e){
-            Toast.makeText(this, "Please Enter Phone No or Password", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, HomeActivity.class));
+            //Toast.makeText(this, "Please Enter Phone No or Password", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -141,7 +170,7 @@ public class TripsHistory extends AppCompatActivity {
             hoursDiff = differenceBetweenDates / hoursInMilli;
             differenceBetweenDates = differenceBetweenDates % hoursInMilli;
 
-            Log.e("Hours Differenc",""+hoursDiff+"-----"+differenceBetweenDates);
+            //Log.e("Hours Differenc",""+hoursDiff+"-----"+differenceBetweenDates);
         }
         catch(Exception e){}
         return hoursDiff;
@@ -157,15 +186,27 @@ public class TripsHistory extends AppCompatActivity {
                     //RemoveItem(position);
                 }
                 else{
-                    Toast.makeText(TripsHistory.this, "Please Try Again", Toast.LENGTH_SHORT).show();
+                    ShowSnackbar("Please Try Again");
+                    //Toast.makeText(TripsHistory.this, "Please Try Again", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("onCancelled", "onCancelled", databaseError.toException());
+                //Log.e("onCancelled", "onCancelled", databaseError.toException());
             }
         });
+    }
+
+    private void ShowSnackbar(String message){
+        Snackbar snackbar = Snackbar.make(linearLayout_activity_recyclerView, ""+message, Snackbar.LENGTH_LONG)
+                .setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(getIntent());
+                    }
+                });
+        snackbar.show();
     }
 
     @Override

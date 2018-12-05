@@ -5,10 +5,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,6 +31,7 @@ import rentme.dim.com.rentme.R;
 
 public class ImageUploadActivity extends AppCompatActivity {
 
+    private LinearLayout linearLayout_image_upload;
     private Button buttonUploadImage;
     private int IMAGE_INETENT = 2, orientation = -1;;
     private String imageName, phoneNumber;
@@ -46,6 +49,8 @@ public class ImageUploadActivity extends AppCompatActivity {
         phoneNumber = sharedPreferencesClassObject.getSharedPreferences("UserData", "UserPhone", "");
 
         databaseReferenceSignInInfo = FirebaseDatabase.getInstance().getReference("SignInInfo");
+
+        linearLayout_image_upload = (LinearLayout) findViewById(R.id.linearLayout_image_upload);
 
         storageRef = FirebaseStorage.getInstance().getReference();
         buttonUploadImage = (Button) findViewById(R.id.button_image_upload);
@@ -82,7 +87,7 @@ public class ImageUploadActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                    Toast.makeText(ImageUploadActivity.this, "Image Uploaded", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ImageUploadActivity.this, "Image Uploaded", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -104,7 +109,8 @@ public class ImageUploadActivity extends AppCompatActivity {
                         sharedPreferencesClassObject.setSharedPreferences("UserData", "UserImageAngle", ""+orientation);
                     }
                     else{
-                        Toast.makeText(ImageUploadActivity.this, "Phone number is not registered", Toast.LENGTH_SHORT).show();
+                        ShowSnackbar("Phone number is not registered");
+                        //Toast.makeText(ImageUploadActivity.this, "Phone number is not registered", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -115,8 +121,19 @@ public class ImageUploadActivity extends AppCompatActivity {
             });
         }
         else{
-            Toast.makeText(ImageUploadActivity.this, "Password Does Not Match", Toast.LENGTH_SHORT).show();
+
         }
+    }
+
+    private void ShowSnackbar(String message){
+        Snackbar snackbar = Snackbar.make(linearLayout_image_upload, ""+message, Snackbar.LENGTH_LONG)
+                .setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(getIntent());
+                    }
+                });
+        snackbar.show();
     }
 
     @Override

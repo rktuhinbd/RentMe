@@ -3,11 +3,13 @@ package rentme.dim.com.rentme.Activity.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ public class CodeVerificationActivity extends AppCompatActivity {
     private Button buttonVerifyCode;
     private TextView textviewResendCode;
     private EditText editTextVerificationCode;
+    private LinearLayout linearLayout_activity_code_verification;
     private String code;
     private FirebaseAuth firebaseAuth;
 
@@ -36,6 +39,7 @@ public class CodeVerificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_verification);
 
+        linearLayout_activity_code_verification = (LinearLayout) findViewById(R.id.linearLayout_activity_code_verification);
         textviewResendCode = (TextView) findViewById(R.id.textViewResendCode);
         editTextVerificationCode = (EditText) findViewById(R.id.editText_verification_code);
         buttonVerifyCode = (Button) findViewById(R.id.button_verify_code);
@@ -46,7 +50,7 @@ public class CodeVerificationActivity extends AppCompatActivity {
         if(i != null){
             code = i.getStringExtra("ForgetPasswordCode");
             //Toast.makeText(this, ""+code, Toast.LENGTH_SHORT).show();
-            Log.e("Code",""+code);
+            //Log.e("Code",""+code);
         }
 
         buttonVerifyCode.setOnClickListener(new View.OnClickListener() {
@@ -59,12 +63,11 @@ public class CodeVerificationActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(CodeVerificationActivity.this, "Invalid Code!!", Toast.LENGTH_SHORT).show();
+                    ShowSnackbar("Invalid Code!!");
+                    //Toast.makeText(CodeVerificationActivity.this, "Invalid Code!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
@@ -77,7 +80,7 @@ public class CodeVerificationActivity extends AppCompatActivity {
                             //Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser user = task.getResult().getUser();
-                            Log.e("Log","Successfull Code Verification");
+                            //Log.e("Log","Successfull Code Verification");
                            //startActivity(new Intent(CodeVerificationActivity.this, UpdatePassword.class));
                             // ...
                         } else {
@@ -96,6 +99,17 @@ public class CodeVerificationActivity extends AppCompatActivity {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         // [END verify_with_code]
         signInWithPhoneAuthCredential(credential);
+    }
+
+    private void ShowSnackbar(String message){
+        Snackbar snackbar = Snackbar.make(linearLayout_activity_code_verification, ""+message, Snackbar.LENGTH_LONG)
+                .setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(getIntent());
+                    }
+                });
+        snackbar.show();
     }
 
     @Override

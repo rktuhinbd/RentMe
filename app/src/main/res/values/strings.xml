@@ -22,4 +22,15 @@
     <string name="registration">Sign Up here</string>
     <string name="welcome">Welcome at \n Rent Me</string>
     <string name="button_bottom_sheet">Upload</string>
+    <string name="default_notification_channel_id">notification id</string>
+    <string name="default_notification_channel_title">notification title</string>
+    <string name="bangla_names">সম্প্ন্ন করুন
+        ভ্রমণ ইতিহাস
+        অ্যাকাউন্ট সেটিংস
+        শর্তাবলী
+        সম্পর্কিত
+        বেরিয়ে যান </string>
+    <string name="ooopsss">Ooopsss</string>
+    <string name="something_went_wrong_n_please_try_again">Something Went Wrong..!!   Please Try Again</string>
+    <string name="todo">TODO</string>
 </resources>

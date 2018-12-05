@@ -1,92 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="rentme.dim.com.rentme">
+package="rentme.dim.com.rentme">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.RECEIVE_SMS" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCmK1m5VkTyLsCEGbB2S-I294SLznU6kTM" />
+<application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyCmK1m5VkTyLsCEGbB2S-I294SLznU6kTM" />
+    <meta-data android:name="firebase_crash_collection_enabled" android:value="false" />
 
-        <activity
-            android:name=".Activity.Activity.SplashScreenActivity"
-            android:noHistory="true"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+    <activity
+        android:name=".Activity.Activity.SplashScreenActivity"
+        android:noHistory="true"
+        android:screenOrientation="portrait">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
 
-        <receiver android:name=".Activity.Data.CheckInternetConnectionClass">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
+    <receiver android:name=".Activity.Data.CheckInternetConnectionClass">
+        <intent-filter>
+            <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+        </intent-filter>
+    </receiver>
 
-        <activity
-            android:name=".Activity.Activity.FirstActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.RegistrationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.SignInActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.ForgotPasswordActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.CodeVerificationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.HomeActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.NavigationDrawerItems.TripsHistory"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.NavigationDrawerItems.AccountSettings"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.NavigationDrawerItems.EditName"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.NavigationDrawerItems.ChangePassword"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.NavigationDrawerItems.UpdatePassword"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.NavigationDrawerItems.ChangeEmail"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.InternetNotConnected"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.GpsOff"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.ImageUploadActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.Activity.NavigationDrawerItems.TermsAndConditions"
-            android:screenOrientation="portrait" />
-        <activity android:name=".Activity.Activity.NavigationDrawerItems.ErrorActivity"
-            android:noHistory="true"></activity>
-    </application>
+    <activity
+        android:name=".Activity.Activity.FirstActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.RegistrationActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.SignInActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.ForgotPasswordActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.CodeVerificationActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.HomeActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.NavigationDrawerItems.TripsHistory"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.NavigationDrawerItems.AccountSettings"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.NavigationDrawerItems.EditName"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.NavigationDrawerItems.ChangePassword"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.NavigationDrawerItems.UpdatePassword"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.NavigationDrawerItems.ChangeEmail"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.InternetNotConnected"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.GpsOff"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.ImageUploadActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".Activity.Activity.NavigationDrawerItems.TermsAndConditions"
+        android:screenOrientation="portrait" />
+    <activity android:name=".Activity.Activity.NavigationDrawerItems.ErrorActivity"
+        android:noHistory="true"></activity>
+    <meta-data
+        android:name="io.fabric.ApiKey"
+        android:value="c3013415f80571d2a30acc8d9fadd295d62fd19a" />
+</application>
 
 </manifest>

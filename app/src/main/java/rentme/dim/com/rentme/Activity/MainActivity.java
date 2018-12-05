@@ -1,7 +1,7 @@
 package rentme.dim.com.rentme.Activity;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
 import rentme.dim.com.rentme.R;
 

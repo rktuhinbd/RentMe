@@ -2,11 +2,13 @@ package rentme.dim.com.rentme.Activity.Activity.NavigationDrawerItems;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +26,7 @@ import rentme.dim.com.rentme.R;
 public class ChangePassword extends AppCompatActivity {
 
     private Button buttonBack, buttonVerifyOldPassword;
+    private LinearLayout linearLayout_activity_change_password;
     private EditText editTextPassword;
     private DatabaseReference databaseReferenceSignInInfo;
     private SharedPreferencesClass sharedPreferencesClassObject;
@@ -35,6 +38,7 @@ public class ChangePassword extends AppCompatActivity {
         setContentView(R.layout.activity_change_password);
 
         //buttonBack = (Button)findViewById(R.id.button_back_to_information);
+        linearLayout_activity_change_password = (LinearLayout) findViewById(R.id.linearLayout_activity_change_password);
         editTextPassword = (EditText) findViewById(R.id.editText_password);
         buttonVerifyOldPassword = (Button)findViewById(R.id.button_verify_old_password);
         sharedPreferencesClassObject = new SharedPreferencesClass(ChangePassword.this);
@@ -63,8 +67,8 @@ public class ChangePassword extends AppCompatActivity {
         if(!inputPassword.isEmpty()){
             final String phoneNumber = sharedPreferencesClassObject.getSharedPreferences("UserData", "UserPhone", "");
             final Query data = databaseReferenceSignInInfo.child(phoneNumber);
-            Log.e("query result", data.toString());
-            Log.e("query result", phoneNumber.toString());
+            //Log.e("query result", data.toString());
+            //Log.e("query result", phoneNumber.toString());
             data.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -77,23 +81,37 @@ public class ChangePassword extends AppCompatActivity {
                             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         }
                         else{
-                            Toast.makeText(ChangePassword.this, "Phone number is not registered", Toast.LENGTH_SHORT).show();
+                            ShowSnackbar("Phone number is not registered");
+                            //Toast.makeText(ChangePassword.this, "Phone number is not registered", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else{
-                        Toast.makeText(ChangePassword.this, "Please Try Again", Toast.LENGTH_SHORT).show();
+                        ShowSnackbar("Please Try Again");
+                        //Toast.makeText(ChangePassword.this, "Please Try Again", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.e("onCancelled", "onCancelled", databaseError.toException());
+                    //Log.e("onCancelled", "onCancelled", databaseError.toException());
                 }
             });
         }
         else{
-            Toast.makeText(ChangePassword.this, "Enter Correct Password", Toast.LENGTH_SHORT).show();
+            ShowSnackbar("Enter Correct Password");
+            //Toast.makeText(ChangePassword.this, "Enter Correct Password", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void ShowSnackbar(String message){
+        Snackbar snackbar = Snackbar.make(linearLayout_activity_change_password, ""+message, Snackbar.LENGTH_LONG)
+                .setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(getIntent());
+                    }
+                });
+        snackbar.show();
     }
 
     @Override

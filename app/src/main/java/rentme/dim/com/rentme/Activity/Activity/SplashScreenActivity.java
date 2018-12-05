@@ -8,6 +8,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import rentme.dim.com.rentme.Activity.Data.CheckInternetConnectionClass;
 import rentme.dim.com.rentme.Activity.Data.SharedPreferencesClass;
 import rentme.dim.com.rentme.R;
@@ -22,6 +24,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_splash_screen);
 
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in_animation);

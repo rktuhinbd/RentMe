@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import rentme.dim.com.rentme.R;
 
 public class FirstActivity extends AppCompatActivity {
@@ -67,9 +68,9 @@ public class FirstActivity extends AppCompatActivity {
         int cy = buttonSignIn.getHeight()/2;
 
         float finalRadius = Math.max(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight());
-            Log.e("final Radius",""+finalRadius);
-            Log.e("cx",""+cx);
-            Log.e("cy",""+cy);
+            //Log.e("final Radius",""+finalRadius);
+            //Log.e("cx",""+cx);
+            //Log.e("cy",""+cy);
         if(Build.VERSION.SDK_INT >= 21){
             Animator revealButtonAnimation = ViewAnimationUtils.createCircularReveal(linearLayout_first, getWindowManager().getDefaultDisplay().getWidth()-cx, getWindowManager().getDefaultDisplay().getHeight()-2*cy, 0, finalRadius);
             revealButtonAnimation.addListener(new AnimatorListenerAdapter() {

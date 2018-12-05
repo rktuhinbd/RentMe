@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/relativelayout_parent_home"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -45,7 +46,8 @@
                 android:layout_height="30dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:background="@drawable/ic_menu" />
+                android:background="@drawable/ic_menu"
+                android:layout_alignParentLeft="true" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -176,24 +178,21 @@
             android:layout_marginTop="20dp"
             android:orientation="vertical"
             android:layout_below="@id/relativelayout_search_destination">
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="4"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.50"
-                android:layout_margin="20dp"
-                android:text="Start Trip"
-                android:background="@drawable/rounded_shape_button"
-                android:backgroundTint="@color/buttonColor"
-                android:textColor="@color/textColor"/>
+
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.50"/>
+
         </LinearLayout>
+
+
 
     </RelativeLayout>
     <LinearLayout
@@ -309,6 +308,16 @@
         android:layout_centerVertical="true"
          />
 
+    <ImageView
+        android:id="@+id/imageview_my_location"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_my_location"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="120dp"/>
+
     <Button
         android:id="@+id/button_done"
         android:layout_width="match_parent"
@@ -321,5 +330,6 @@
         android:textColor="#fff"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:visibility="visible"
         android:background="@drawable/rounded_shape_button" />
 </RelativeLayout>
